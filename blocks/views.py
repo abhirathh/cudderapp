@@ -75,7 +75,7 @@ def get_chain(request):
     return JsonResponse(response)
 
 def get_user_blocks(request):
-    url = '/blocks/get_chain'
+    url = 'https://cudder.herokuapp.com/blocks/get_chain'
     r = requests.get(url)
     data = r.json()
     user_data = []
@@ -175,7 +175,7 @@ def get_user_notes_blocks(request):
         cudder_api_key = request.POST['cudder_api_key']
 
         if userApiConfig.objects.filter(username = cudder_username, api_key = cudder_api_key):
-            url = '/blocks/get_notes_chain'
+            url = 'https://cudder.herokuapp.com/blocks/get_notes_chain'
             r = requests.get(url)
             data = r.json()
             user_data = []
@@ -314,7 +314,7 @@ def get_user_data_blocks(request):
         cudder_api_key = request.POST['cudder_api_key']
 
         if userApiConfig.objects.filter(username = cudder_username, api_key = cudder_api_key):
-            url = '/blocks/get_data_chain'
+            url = 'https://cudder.herokuapp.com/blocks/get_data_chain'
             r = requests.get(url)
             data = r.json()
             user_data = []
