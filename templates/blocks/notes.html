@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="{% static "css/notes.css" %}">
+	<link rel="stylesheet" href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity=
+"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous">
+
+	<script src=
+"https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity=
+"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
+	</script>
+
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity=
+"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous">
+	</script>
+
+	<script src=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity=
+"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous">
+	</script>
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="body">
+  <nav class="sidebar close">
+
+  <div class="menu-bar">
+      <div class="menu">
+
+          <ul class="menu-links">
+            <li class="nav-link">
+                <a onclick="window.location='/blocks/passwords/{{user.username}}';" style="cursor:pointer;">
+                    <i class='bx bx-home-alt icon' ></i>
+                    <span class="text nav-text">Credentials</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a onclick="window.location='/blocks/notes/{{user.username}}';" style="cursor:pointer;">
+                    <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                    <span class="text nav-text">Notes</span>
+                </a>
+            </li>
+
+              <li class="nav-link">
+                  <a href="#">
+                      <i class='bx bx-bell icon'></i>
+                      <span class="text nav-text">Documents</span>
+                  </a>
+              </li>
+
+              <li class="nav-link">
+                  <a href="#">
+                      <i class='bx bx-pie-chart-alt icon' ></i>
+                      <span class="text nav-text">Analytics</span>
+                  </a>
+              </li>
+
+              <li class="nav-link">
+                  <a href="#">
+                      <i class='bx bx-heart icon' ></i>
+                      <span class="text nav-text">Likes</span>
+                  </a>
+              </li>
+
+              <li class="nav-link">
+                  <a href="#">
+                      <i class='bx bx-wallet icon' ></i>
+                      <span class="text nav-text">Wallets</span>
+                  </a>
+              </li>
+
+          </ul>
+      </div>
+
+      <div class="bottom-content">
+          <li class="">
+              <a onclick="window.location='/accounts/logout';" style="cursor:pointer;">
+                  <i class='bx bx-log-out icon' ></i>
+                  <span class="text nav-text">Logout</span>
+              </a>
+          </li>
+
+          <li class="mode">
+              <div class="sun-moon">
+                  <i class='bx bx-moon icon moon'></i>
+                  <i class='bx bx-sun icon sun'></i>
+              </div>
+              <span class="mode-text text">Dark mode</span>
+
+              <div class="toggle-switch">
+                  <span class="switch"></span>
+              </div>
+          </li>
+
+      </div>
+  </div>
+</nav>
+
+  <section class="home">
+    <div class="sidebarDiv hidden">
+
+      <div class="sidebarNoteTitle">
+      </div>
+      <div class="sidebarNote">
+      </div>
+
+    </div>
+	<div class="container my-3">
+		<h1>Take your Notes here</h1>
+		<div class="card">
+			<div class="card-body">
+        <form class="notesForm" action="" method="POST">
+          <!-- {% csrf_token %} -->
+
+        <h5 class="card-title">
+					Title
+
+				</h5>
+        <input type="text" name="notetitle" autoComplete="off" class="notetitle form-control" name="" value="" placeholder=""><br>
+				<h5 class="card-title">
+					Add a Note
+
+				</h5>
+				<div class="form-group">
+					<textarea name="notearea" autoComplete="off" class="notearea form-control"
+						id="addTxt">
+					</textarea>
+				</div>
+      </form>
+				<button class="btn btn-primary"
+					id="addBtn" style=
+					"background-color:green">
+					Add Note
+				</button>
+			</div>
+		</div>
+		<hr>
+		<h1>Your Notes</h1>
+		<hr>
+
+		<div id="notes" class=
+			"row container-fluid">
+		</div>
+	</div>
+
+  <div class="notification-container" id="notification-container">
+
+    <!-- <div class="notification notification-success">
+      <strong>Success:</strong> Credential stored on the blockchain.
+    </div> -->
+  </div>
+</section>
+
+<script type="text/javascript">
+let addTxt = document.getElementById("addTxt");
+// const notesFormCsrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+
+showNotes();
+
+window.onload = function() {
+  addTxt.value = "";
+  document.querySelector('.notetitle').value = "";
+}
+
+// If user adds a note, add it to the localStorage
+let addBtn = document.getElementById("addBtn");
+addBtn.addEventListener("click", function(e) {
+  if(addTxt.value !== '' && document.querySelector('.notetitle').value !== '') {
+  const notesFormBackend = new FormData()
+  notesFormBackend.append('notetitle', document.querySelector('.notetitle').value)
+  notesFormBackend.append('notearea', document.querySelector('.notearea').value)
+  // notesFormBackend.append('csrfmiddlewaretoken', notesFormCsrf)
+
+  fetch('/blocks/userNotes', {
+    method: 'POST',
+    body: notesFormBackend
+  })
+
+  shootSuccessNotification()
+}
+
+  addTxt.value = "";
+  document.querySelector('.notetitle').value = "";
+
+  setTimeout(() => {
+    showNotes();
+  }, 100)
+});
+
+let notesElm = document.getElementById("notes");
+
+
+function generateHtml(user_data) {
+  let template = '';
+  let tableTemplate = '';
+  let srNo = 0
+  user_data.map((data) => {
+    srNo += 1
+    template += `<div class="noteCard my-2 mx-2 card"
+			style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="noteTitle card-title">
+						${data.blocktitle}
+					</h5>
+					<p class="noteText card-text">
+						${data.note.replaceAll('\r\n', '<br>')}
+					</p>
+			</div>
+		</div>`
+  })
+  document.getElementById("notes").innerHTML = template
+  // blocksdiv.innerHTML = template
+}
+
+// Function to show elements from localStorage
+function showNotes() {
+	fetch('http://127.0.0.1:8000/blocks/get_user_notes_blocks').then(response => response.json()).then(data => {
+    generateHtml(data)
+    sidebarNoteDisplay()
+})
+}
+
+function sidebarNoteDisplay() {
+  const noteCard = document.querySelectorAll('.noteCard')
+  const noteTitle = document.querySelectorAll('.noteTitle')
+  const noteText = document.querySelectorAll('.noteText')
+
+  for(let y = 0; y < noteCard.length; y++) {
+    noteCard[y].onclick = function() {
+      document.querySelector('.sidebarDiv').classList.remove('hidden')
+      document.querySelector('.sidebarNoteTitle').innerHTML = `<h3>${noteTitle[y].textContent}</h3>`
+      document.querySelector('.sidebarNote').innerHTML = `<p>${noteText[y].innerHTML}</p>`
+    }
+  }
+  // console.log(document.querySelectorAll('.noteCard')[4]);
+}
+
+// Restrict No. of words in noteCard
+// document.querySelectorAll('.noteCard')[0]
+
+<!--  -->
+const body = document.querySelector('body'),
+      sidebar = body.querySelector('nav'),
+      // toggle = body.querySelector(".toggle"),
+      modeSwitch = body.querySelector(".toggle-switch"),
+      modeText = body.querySelector(".mode-text");
+
+
+sidebar.classList.remove("close");
+
+modeSwitch.addEventListener("click" , () =>{
+    body.classList.toggle("dark");
+
+
+    if(body.classList.contains("dark")){
+        modeText.innerText = "Light mode";
+        document.querySelector('.body').style.color = '#fff'
+        document.querySelector('.body').style.backgroundColor = '#000'
+
+        for(let y = 0; y < document.querySelectorAll('.card-body').length; y++) {
+        document.querySelectorAll('.card-body')[y].style.color = '#000'
+      }
+    }else{
+        modeText.innerText = "Dark mode";
+        document.querySelector('.body').style.color = '#000'
+        for(let y = 0; y < document.querySelectorAll('.card-body').length; y++) {
+        document.querySelectorAll('.card-body')[y].style.color = '#000'
+      }
+      document.querySelector('.body').style.backgroundColor = '#fff'
+    }
+});
+
+// Note card to sidebar
+// const noteCard = document.querySelectorAll('.noteCard')
+// for(let y = 0; y < noteCard.length; y++) {
+//   noteCard[y].onclick = function() {
+//     console.log(noteCard[y].textContent);
+//   }
+// }
+
+// Notification
+const notificationContainer = document.getElementById('notification-container');
+const NOTIFICATION_TYPES = {
+	// INFO: 'info',
+	SUCCESS: 'success',
+	// WARNING: 'warning',
+	// DANGER: 'danger'
+}
+
+function addNotification(type, text) {
+    // create the DIV and add the required classes
+    const newNotification = document.createElement('div');
+    newNotification.classList.add('notification', `notification-${type}`);
+
+    const innerNotification = `
+		<strong>${type}:</strong> ${text}
+	`;
+
+    // insert the inner elements
+    newNotification.innerHTML = innerNotification;
+
+    // add the newNotification to the container
+    notificationContainer.appendChild(newNotification);
+
+    return newNotification;
+}
+
+function removeNotification(notification) {
+	notification.classList.add('hide');
+
+	// remove notification from the DOM after 0.5 seconds
+	setTimeout(() => {
+		notificationContainer.removeChild(notification);
+	}, 500);
+}
+
+// adding and removing notification for DEMO purposes
+function shootSuccessNotification() {
+  setTimeout(() => {
+    const success = addNotification(NOTIFICATION_TYPES.SUCCESS, 'Note stored on the network');
+    setTimeout(() => {
+      removeNotification(success);
+    }, 2000);
+  }, 100);
+}
+
+</script>
+</body>
+
+</html>

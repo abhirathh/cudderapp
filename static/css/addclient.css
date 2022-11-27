@@ -1,0 +1,119 @@
+/* nav */
+.card {
+  max-width: 25rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+a.active {
+  border-bottom: 2px solid #55c57a;
+}
+
+.nav-link {
+  color: rgb(110, 110, 110);
+  font-weight: 500;
+}
+.nav-link:hover {
+  color: #55c57a;
+}
+
+.nav-pills .nav-link.active {
+  color: black;
+  background-color: white;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-weight: 600;
+}
+
+.tab-content {
+  padding-bottom: 1.3rem;
+}
+
+.form-control {
+  background-color: rgb(241, 243, 247);
+  border: none;
+}
+
+/* 3nd card */
+.third {
+  padding: 0 1.5rem 0 1.5rem;
+}
+
+label {
+  font-weight: 500;
+  color: rgb(104, 104, 104);
+}
+
+.btn-success {
+  float: right;
+}
+
+.form-control:focus {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
+
+/* 1st card */
+
+ul {
+  list-style: none;
+  margin-top: 1rem;
+  padding-inline-start: 0;
+}
+
+.search {
+  padding: 0 1rem 0 1rem;
+}
+
+.ccontent li .wrapp {
+  padding: 0.3rem 1rem 0.001rem 1rem;
+}
+
+.ccontent li .wrapp div {
+  font-weight: 600;
+}
+
+.ccontent li .wrapp p {
+  font-weight: 360;
+}
+
+/* .ccontent li:hover {
+  background-color: rgb(117, 93, 255);
+  color: white;
+} */
+
+/* 2nd card */
+
+.addinfo {
+  padding: 0 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn-grad {
+  border: none;
+  background-color: #01d28e;
+   margin: 10px;
+   padding: 7px 15px;
+   text-align: center;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+ }
+
+ .btn-grad:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: white;
+   text-decoration: none;
+ }

@@ -1,0 +1,29 @@
+.username, .usermail {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px
+}
+
+.submitbtn {
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  background-color: rgb(98, 0, 255);
+  color: white;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.forgotpassform {
+ position: fixed;
+ top: 47%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ /* width: 50% */
+}
+
+.errormsg {
+  color: black;
+  margin-top: 10px
+}

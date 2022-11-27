@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static "css/security.css" %}">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/style.css" %}" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="/">
+            <span>
+              Cudder
+            </span>
+          </a>
+
+          <div class="navbar-collapse" id="">
+            <div class="custom_menu-btn">
+              <button onclick="openNav()">
+                <span class="s-1"> </span>
+                <span class="s-2"> </span>
+                <span class="s-3"> </span>
+              </button>
+            </div>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="/security">Security</a>
+                <a href="/accounts/login">Login</a>
+                <a href="/accounts/register">Register</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="contentdiv">
+      <h1>Cudder security standards</h1><br><br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce placerat, felis sed faucibus suscipit, mi libero aliquam lacus, ut aliquam eros nibh vitae purus. Phasellus in mollis tellus. Sed eleifend tellus nisl, vel rutrum dolor semper nec. Fusce eget cursus mauris. Sed felis dui, accumsan vitae imperdiet at, tempus et libero. Nam bibendum arcu ac ante egestas, eget ullamcorper quam molestie. Duis sollicitudin elit nec tellus malesuada, quis tincidunt quam cursus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce quam lectus, tincidunt vel mattis eu, pellentesque at augue. Sed est odio, sagittis non porttitor at, tristique a neque. Aliquam molestie mauris nec orci fringilla pulvinar. Quisque et risus nec lacus mollis tincidunt. Ut eleifend suscipit libero quis tempus. Nullam a dolor fringilla, pretium metus non, euismod risus. Etiam dui purus, ultricies at fringilla ac, aliquet et est. Pellentesque nec finibus tellus.</p><br>
+
+<p>Mauris ultrices aliquet purus in blandit. Curabitur vel eros at justo accumsan rutrum maximus ut ipsum. Sed ultrices elit dolor, at consectetur elit tristique id. Maecenas velit nisi, condimentum quis accumsan at, posuere vel turpis. Morbi efficitur vitae turpis in semper. Sed orci neque, accumsan non magna id, ultricies bibendum ante. Sed eleifend nibh sit amet lectus fermentum ultrices. In a pulvinar magna, gravida auctor mauris. Vivamus at malesuada libero, a fermentum nisl. Praesent lorem nisi, accumsan in scelerisque at, sollicitudin sed lorem. Phasellus et pharetra ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum mattis, libero in feugiat sollicitudin, neque enim placerat lectus, luctus sagittis urna risus et tortor. Quisque faucibus augue sapien, pellentesque faucibus dolor pellentesque at.</p><br>
+
+<p>Curabitur vitae arcu at justo auctor hendrerit vel eget justo. Proin diam magna, bibendum quis consectetur ultricies, eleifend et felis. Duis at convallis mauris, sit amet hendrerit dui. In euismod consequat velit a accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus neque felis, aliquam id lorem tincidunt, convallis luctus neque. Curabitur odio ipsum, lobortis tempor ullamcorper a, fringilla non nibh. Donec ac nibh ut tortor hendrerit faucibus eu non massa. Phasellus at tortor lorem. Praesent malesuada orci tellus, at placerat nisl tempor vel. Sed sit amet gravida quam. Quisque ut nunc imperdiet, auctor arcu at, fermentum ligula. Pellentesque rhoncus vulputate nibh, sit amet mollis felis facilisis id. Aenean nec diam non neque tristique tempor sit amet vitae ipsum.</p>
+    </div>
+    <script type="text/javascript" src="{% static "javascript/jquery-3.4.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "javascript/bootstrap.js" %}"></script>
+
+    <script>
+      function openNav() {
+        document.getElementById("myNav").classList.toggle("menu_width");
+        document
+          .querySelector(".custom_menu-btn")
+          .classList.toggle("menu_btn-style");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+<title>API Dashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+   <link
+     rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+     crossorigin="anonymous"
+   />
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+crossorigin="anonymous"
+></script>
+<script
+src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+crossorigin="anonymous"
+></script>
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+<link href="{% static "css/all.min.css" %}" rel="stylesheet" type="text/css">
+<link href="{% static "css/nav.css" %}" rel="stylesheet">
+<link href="{% static "css/table.css" %}" rel="stylesheet">
+<link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+<script nonce="6b69a8c9-c6fe-48fb-9b96-012280eb67f3">(function(w,d){!function(a,e,t,r){a.zarazData=a.zarazData||{};a.zarazData.executed=[];a.zaraz={deferred:[]};a.zaraz.q=[];a.zaraz._f=function(e){return function(){var t=Array.prototype.slice.call(arguments);a.zaraz.q.push({m:e,a:t})}};for(const e of["track","set","ecommerce","debug"])a.zaraz[e]=a.zaraz._f(e);a.zaraz.init=()=>{var t=e.getElementsByTagName(r)[0],z=e.createElement(r),n=e.getElementsByTagName("title")[0];n&&(a.zarazData.t=e.getElementsByTagName("title")[0].text);a.zarazData.x=Math.random();a.zarazData.w=a.screen.width;a.zarazData.h=a.screen.height;a.zarazData.j=a.innerHeight;a.zarazData.e=a.innerWidth;a.zarazData.l=a.location.href;a.zarazData.r=e.referrer;a.zarazData.k=a.screen.colorDepth;a.zarazData.n=e.characterSet;a.zarazData.o=(new Date).getTimezoneOffset();a.zarazData.q=[];for(;a.zaraz.q.length;){const e=a.zaraz.q.shift();a.zarazData.q.push(e)}z.defer=!0;for(const e of[localStorage,sessionStorage])Object.keys(e||{}).filter((a=>a.startsWith("_zaraz_"))).forEach((t=>{try{a.zarazData["z_"+t.slice(7)]=JSON.parse(e.getItem(t))}catch{a.zarazData["z_"+t.slice(7)]=e.getItem(t)}}));z.referrerPolicy="origin";z.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(a.zarazData)));t.parentNode.insertBefore(z,t)};["complete","interactive"].includes(e.readyState)?zaraz.init():a.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,0,"script");})(window,document);</script>
+</head>
+<body style="background-color:black;color:white;" id="">
+  <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top" style="background-color:black;color:white;">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link" style="font-size: 30px;" href="/">cudder</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="/accounts/logout" id="userDropdown" >
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Logout</span>
+                            </a>
+          </div>
+      </li>
+  </ul>
+
+
+                </nav>
+                <section class="">
+<div class="container">
+<div class="justify-content-center">
+<div class="">
+  <!-- <h3 style="color:white;">API Key</h3> -->
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<form class="" action="/api/newApiKey" method="post">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">New API</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <label class="" for="appname" style="color:black;">API Name</label>
+          <input type="text" class="form-control appname" name="appname" placeholder="" value="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+  <div class="row">
+
+        <div class="col">
+          <p>Cudder is a decentralized key-value datastore, which you can use by installing our Python SDK. <br> Create your API key, and kindly read our <a target="_blank" href="https://github.com/abhirathh/cudder">API docs</a>.</p>
+          <div class="card shadow">
+            <div style="background-color:black;border:none;" class="card-header">
+              <div class="row">
+                <div class="col">
+                  <h3 class="mb-0" style="color:white;">API Keys</h3>
+                </div>
+                <div class="col">
+                  <button type="button" name="button" class="createApiButton" data-toggle="modal" data-target="#exampleModalCenter" style="background-color:white;color:black;border:none;padding-left:11px;padding-right:11px;border-radius:5px;font-size:15px;">Create API</button>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">API Key</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in user_api_data %}
+                  <tr>
+                    <td><span class="mb-0 text-sm" style="font-weight:bold;">{{i.name}}</span></td>
+                    <td><span class="mb-0 text-sm" style="font-weight:bold;">{{i.api_key}}</span></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- <div class="wrap" style="background-color:#161b22;color:white;margin-top:-80px;">
+<div class="login-wrap p-4 p-md-5">
+<div class="d-flex">
+<div class="w-100">
+<h3 class="mb-4" style="color:white;">Sign In</h3>
+</div>
+<div class="w-100">
+<p class="social-media d-flex justify-content-end">
+</p>
+</div>
+</div>
+<form action="login" method="POST" class="signin-form">
+<div class="form-group mt-3">
+<label class="" for="username">Username</label>
+<input type="text" oninput="this.value = this.value.toLowerCase()" name="username" class="form-control" required>
+</div>
+<div class="form-group">
+  <label class="" for="password">Password</label>
+<input id="password-field" name="password" type="password" class="form-control" required>
+<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+</div>
+<div class="form-group">
+<button type="submit" class="form-control btn btn-dark rounded submit px-3">Sign In</button>
+</div>
+<div class="form-group d-md-flex">
+<div class="w-50 text-md-left">
+</div>
+</div>
+</form>
+<p class="text-center">Not a member? <a href="register">Sign Up</a></p>
+</div>
+</div> -->
+</div>
+</div>
+</div>
+</section>
+{% for message in messages %}
+<div class="alertMessage w3-container w3-animate-right">
+<span class="close" onclick="this.parentElement.style.display='none';">×</span>
+{{message}}
+</div>
+{% endfor %}
+<script src="{% static "javascript/login.js" %}"></script>
+<script>eval(mod_pagespeed_M0XlbbKlq8);</script>
+<script>eval(mod_pagespeed_DUZ_Pnp2XD);</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"742ecbf4daa16ecb","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.8.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>
